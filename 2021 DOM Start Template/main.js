@@ -19,7 +19,7 @@ function init(){
   animate();
 }
 
-
+//  animation loop called 60 fps
 function animate(){
   //ctx.clearRect(0,0,canvas.width, canvas.height);
   ctx.fillStyle = 'rgba(0,0,0,.05)'
@@ -28,8 +28,8 @@ function animate(){
   requestAnimationFrame(animate);
 }
 
-   //  creating the array of ball objects before
-    //  making the game object
+  //   creating the array of ball objects before
+  //   making the game object
     function loadBubbles(numBubbles){
         var bubbles = [];
         for(var i = 0; i < numBubbles; i++){
