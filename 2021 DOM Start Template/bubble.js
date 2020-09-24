@@ -9,21 +9,22 @@ function Bubble(x, y, dx, dy, rad, clr){
     this.isOverlapping = false;
 }
 
-  //  placing methods in the prototype (every ball shares functions)
+  //  placing methods in the prototype (every bubble shares functions)
 
-  Bubble.prototype.run = function(){
+Bubble.prototype.run = function(){
     this.checkEdges();
     this.checkOverlapping()
     this.update();
     this.render();
   }
 
-  Bubble.prototype.checkOverlapping = function(){
-      this.isOverlapping = false;//  default color
-      this.clr =  "rgba(255,255,255,255)"
+// check if this bubble is overlapping any other bubble
+Bubble.prototype.checkOverlapping = function(){
+    this.isOverlapping = false;//  default color
+    this.clr =  "rgba(255,255,255,255)"
     var b = game.bubbles;
-    for(var i = 0; i < b.length; i++){
-       if(this !== b[i]){
+    for(var i = 0; i < b.length; i++){ // for all the bubbles
+       if(this !== b[i]){   // if not this bubble
          var d = Math.sqrt((this.x-b[i].x)*(this.x-b[i].x) + (this.y-b[i].y)*(this.y-b[i].y));
          if(d < this.rad + b[i].rad){
             this.isOverlapping = true;
@@ -34,7 +35,10 @@ function Bubble(x, y, dx, dy, rad, clr){
 
   }
 
-  Bubble.prototype.render = function(){
+// draw the bubble on the canvas
+Bubble.prototype.render = function(){
+    let ctx = game.ctx;
+    // color depends on whether this bubble overlaps any oher bubble
     if(this.isOverlapping){
         ctx.strokeStyle = "rgba(255,255,255,255)"//this.clr;
         ctx.fillStyle = this.clr;
@@ -48,10 +52,11 @@ function Bubble(x, y, dx, dy, rad, clr){
         ctx.arc(this.x,this.y, this.rad, Math.PI*2, 0, false);
         ctx.stroke();
     }
-    
+
   }
-  
-  Bubble.prototype.update = function(){
+
+// Move the bubble in a random direction
+Bubble.prototype.update = function(){
     if(!game.gamePaused){
       this.dx = Math.random()*6-3;
       this.dy = Math.random()*6-3;
@@ -60,9 +65,11 @@ function Bubble(x, y, dx, dy, rad, clr){
     }
   }
 
-  Bubble.prototype.checkEdges = function(){
-    if(this.x > canvas.width)  this.x = 0;
-    if(this.x < 0)  this.x = canvas.width;
-    if(this.y > canvas.height)  this.y = 0;
-    if(this.y < 0)  this.y = canvas.height;
+// When a bubble hits an edge of the canvas, it wraps around to the opposite edge.
+Bubble.prototype.checkEdges = function(){
+    let canvas = game.canvas;
+    if(this.x > canvas.width)  this.x = 0; // wrap around from right to left
+    if(this.x < 0)  this.x = canvas.width; // wrap around from left to right
+    if(this.y > canvas.height)  this.y = 0; // wrap around from bottom to top
+    if(this.y < 0)  this.y = canvas.height; // wrap around from top to bottom
   }
