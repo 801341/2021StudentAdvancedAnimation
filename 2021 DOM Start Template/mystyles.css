@@ -15,8 +15,8 @@ body {
 }
 
 #canvas {
-    border: 'solid black 2px';
-    background-color: 'rgba(0,0,0, .95)';
+    border: solid black 2px;
+    background-color: rgba(0,0,0, .95);
 }
 
 
