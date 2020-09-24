@@ -1,5 +1,6 @@
 // JSVector -- a Javascript 2D vector class
-
+//  Add your name here
+//  Add project name here
 // The class constructor
 function JSVector(x = 0,y = 0){
         this.x = x;
