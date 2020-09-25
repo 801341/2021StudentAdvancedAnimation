@@ -34,6 +34,5 @@ function GameArea(){
        // append a text node child to the tile
        this.tiles[i].appendChild(document.createTextNode("Tile " + (i + 1)));
        //this.t1Text.style.padding = "10px";
-
     }
 }

@@ -10,7 +10,6 @@ function Bubble(x, y, dx, dy, rad, clr){
 }
 
   //  placing methods in the prototype (every bubble shares functions)
-
 Bubble.prototype.run = function(){
     this.checkEdges();
     this.checkOverlapping()
