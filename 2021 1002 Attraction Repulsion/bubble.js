@@ -10,7 +10,6 @@ function Bubble(x, y, dx, dy, rad, clr){
 }
 
   //  placing methods in the prototype (every bubble shares functions)
-
 Bubble.prototype.run = function(){
     this.checkEdges();
     this.checkOverlapping()
@@ -22,10 +21,10 @@ Bubble.prototype.run = function(){
 Bubble.prototype.checkOverlapping = function(){
     this.isOverlapping = false;//  default color
     this.clr =  "rgba(255,255,255,255)"
-    var b = game.bubbles;
-    for(var i = 0; i < b.length; i++){ // for all the bubbles
+    let b = game.bubbles;
+    for(let i = 0; i < b.length; i++){ // for all the bubbles
        if(this !== b[i]){   // if not this bubble
-         var d = Math.sqrt((this.x-b[i].x)*(this.x-b[i].x) + (this.y-b[i].y)*(this.y-b[i].y));
+         let d = Math.sqrt((this.x-b[i].x)*(this.x-b[i].x) + (this.y-b[i].y)*(this.y-b[i].y));
          if(d < this.rad + b[i].rad){
             this.isOverlapping = true;
             this.clr =  "rgba(100,220,55,10)"
